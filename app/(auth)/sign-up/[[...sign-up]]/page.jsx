@@ -1,17 +1,17 @@
-"use client"
-import { SignUp, useUser } from '@clerk/nextjs';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+"use client";
+import { SignUp, useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Page() {
-  const { isSignedIn } = useUser();
+  const { isSignedIn, isLoaded } = useUser();
   const router = useRouter();
 
   useEffect(() => {
-    if (isSignedIn) {
-      router.push('/dashboard');
+    if (isLoaded && isSignedIn) {
+      router.push("app/(routes)/dashboard"); // Updated redirect path
     }
-  }, [isSignedIn]);
+  }, [isLoaded, isSignedIn, router]);
 
   return (
     <section className="bg-white">
@@ -23,7 +23,7 @@ export default function Page() {
         </main>
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img
-            alt=""
+            alt="Sign Up"
             src="./signup expense.jpg"
             className="absolute inset-0 h-full w-full object-cover opacity-70"
           />

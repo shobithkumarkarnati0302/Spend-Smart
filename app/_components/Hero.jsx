@@ -3,11 +3,10 @@ import Image from "next/image";
 
 function Hero() {
   return (
-    <section className="bg-gray-100 border-gray-600 flex items-center flex-col gap-0">
-      {" "}
-      {/* Removed extra space above Hero */}
-      <div className="mx-auto max-w-screen-xl -mt-20 px-4 py-16 lg:flex lg:h-screen lg:items-center border-10 border-gray-600">
-        <div className="mx-auto max-w-xl text-center">
+    <section className="bg-gray-100 flex flex-col lg:gap-6 items-center px-4 py-16 lg:py-24">
+      <div className="mx-auto max-w-screen-xl flex flex-col items-center text-center">
+        {/* Text Section */}
+        <div className="max-w-2xl">
           <h1 className="text-3xl font-extrabold sm:text-5xl">
             Manage Your Expenses
             <br />
@@ -15,27 +14,31 @@ function Hero() {
               Control Your Money.
             </strong>
           </h1>
-          <p className="mt-2 text-lg sm:text-xl/relaxed">
+          <p className="mt-2 text-lg sm:text-xl">
             <i>Start Creating Your Budget with ❝ Spend Smart❞</i>
           </p>
-
-          <div className="mt-4 flex flex-wrap justify-center gap-4">
+          <div className="mt-4 flex justify-center">
             <a
-              className="block w-auto rounded-xl bg-primary px-12 py-3 text-sm font-medium text-white shadow-sm hover:bg-secondary hover:text-black focus:ring-3 focus:outline-hidden sm:w-auto"
-              href="/sign-in"
+              className="rounded-xl bg-primary px-8 py-3 text-sm font-medium text-white shadow-md transition duration-300 hover:bg-secondary hover:text-black"
+              href="http://localhost:3000/dashboard"
             >
               Get Started
             </a>
           </div>
         </div>
+
+        {/* Image Section */}
+        <div className="mt-8 w-full flex justify-center">
+          <Image
+            src="/dashboard.png"
+            alt="Dashboard Preview"
+            width = {2000}
+            height = {1200}
+            className="w-full max-w-md sm:max-w-lg lg:max-w-4xl h-auto"
+            priority
+          />
+        </div>
       </div>
-      <img
-        src="./dashboard.png"
-        alt=""
-        width={1200}
-        height={800}
-        className="-mt-32 mb-56"
-      />
     </section>
   );
 }

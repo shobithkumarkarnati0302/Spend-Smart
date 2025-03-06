@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import CardsInfo from "./_components/CardsInfo";
 import { db } from "../../../utils/dbconfig";
 import { getTableColumns, sql, eq, desc } from "drizzle-orm";
@@ -13,7 +14,15 @@ function Dashboard() {
   const [budgetList, setBudgetList] = useState([]);
   const [expensesList, setExpensesList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { user } = useUser();
+  const { user, isLoaded, isSignedIn } = useUser();
+  const router = useRouter();
+
+  // Redirect user if not signed in
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.push("/auth/sign-in"); // Redirect to sign-in if not logged in
+    }
+  }, [isLoaded, isSignedIn, router]);
 
   useEffect(() => {
     if (user) {
